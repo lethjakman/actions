@@ -1,4 +1,5 @@
 from actions.actions import Actions
+import pytest
 import json
 import psycopg2
 
@@ -54,6 +55,15 @@ def test_add_multiple_actions():
     count = result[0]
     assert count == 2
 
+# Test adding a single action
+def test_invalid_json_action():
+    input1 = {"act": "jump", "time": 100}
+    input1_json = json.dumps(input1)
+
+    actions = Actions(conn)
+
+    with pytest.raises(KeyError):
+        actions.add_action(input1_json)
 
 # Grab the stats and check averages to make sure it's correct
 def test_get_stats():
