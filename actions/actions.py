@@ -1,7 +1,6 @@
 class Actions:
     def __init__(self, conn):
         self.conn = conn
-        pass
 
     def add_action(self, action_json):
         """ Accepts an action in the form of json and stores it
@@ -15,5 +14,5 @@ class Actions:
         Returns:
         str: A json array of averaged actions and their types
         """
-        pass
-
+        # TODO: Remove. Just for testing purposes
+        return '[{"action": "jump", "avg": 0}, {"action": "run", "avg": 75}]'
