@@ -22,5 +22,14 @@ class Actions:
         Returns:
         str: A json array of averaged actions and their types
         """
-        # TODO: Remove. Just for testing purposes
-        return '[{"action": "jump", "avg": 0}, {"action": "run", "avg": 75}]'
+        self.cur.execute("""
+        SELECT
+            action,
+            round(AVG(time))::int AS avg -- Assuming int is good enough since you didn't have a decimal
+        FROM actions
+        GROUP BY action
+        """)
+        result = self.cur.fetchall()
+        keyed_values = [{"action": action, "avg": avg} for action, avg in result]
+
+        return json.dumps(keyed_values)
