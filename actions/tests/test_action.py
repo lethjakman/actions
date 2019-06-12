@@ -2,10 +2,14 @@ from actions.actions import Actions
 import pytest
 import json
 import psycopg2
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 # Use our actions_test database as created in our setup_test_db.py script
-conn = psycopg2.connect(dbname = "actions_test")
+connection_string = os.environ.get("TEST_DB_CONN", "dbname=actions_test")
+conn = psycopg2.connect(connection_string)
 cur = conn.cursor()
 
 # Create the actions table in our test database

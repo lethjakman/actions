@@ -8,6 +8,7 @@ pytest = "*"
 
 [packages]
 psycopg2 = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
