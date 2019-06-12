@@ -7,6 +7,10 @@ class Actions:
 
     def add_action(self, action_json):
         """ Accepts an action in the form of json and stores it
+
+        This insertion the data and requires action and time to be present in
+        the string before inserting
+
         Parameters:
         action_json (str): A json string of an action - {"action": "jump", "time": 100}
         """
@@ -18,7 +22,11 @@ class Actions:
         self.cur.execute("INSERT INTO actions (action, time) VALUES (%s, %s)", [action, time])
 
     def get_stats(self):
-        """ Returns an json string of average of times per action
+        """ Returns an json string of average of times per action.
+
+        This is optimized for simplicity, and can easily be cached into redis
+        if performance becomes an issue.
+
         Returns:
         str: A json array of averaged actions and their types
         """

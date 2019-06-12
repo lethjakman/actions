@@ -9,6 +9,8 @@ conn = psycopg2.connect(dbname = "actions_test")
 cur = conn.cursor()
 
 # Create the actions table in our test database
+# I didn't include creation for a production model because that belongs in a
+# migration system
 def setup_module():
     cur.execute("""CREATE TABLE IF NOT EXISTS  actions (
       action text,
